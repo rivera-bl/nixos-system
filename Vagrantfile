@@ -16,5 +16,5 @@ Vagrant.configure("2") do |config|
       vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
   end
 
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "~/dev/nix/", "/home/vagrant/dusk", disabled: false
 end
