@@ -38,21 +38,27 @@ nix-channel --update nixos; nixos-rebuild switch
 
 ## Resources
 
-- [jd Blogpost][1]
-- [Wil Taylor YT][2]
-- [NixOS example multiple hosts/modules][3]
+- [Video: Wil Taylor][1]
+- [Repository: multiple hosts/modules][2]
+- [Docs: writing modules][3]
 
-[1]: https://jdisaacs.com/blog/nixos-config/
-[2]: https://www.youtube.com/watch?v=mJbQ--iBc1U&list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-&index=8
-[3]: https://github.com/jakubgs/nixos-config
+[1]: https://www.youtube.com/watch?v=mJbQ--iBc1U&list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-&index=8
+[2]: https://github.com/jakubgs/nixos-config
+[3]: https://nixos.org/manual/nixos/stable/index.html#sec-writing-modules
 
 ## TODO
 
 - [ ] create a flake for configuration.nix
+  - [ ] use roles
+- [ ] zfs?
+- [ ] home-manager?
+    - !doesn't support nixos rollbacks
+    https://nix-community.github.io/home-manager/index.html#sec-usage-rollbacks
 - [x] upload nixbox-21.05 to vagrant cloud
 - [x] share dev/nix folder with vagrant
 - [x] install rnix-lsp on vim with treesitter support
     treesitter is not automatically highlighting when opening .nix files
+
 - [ ] create a box with nixos 22.05
     - [ ] for now use a provisioner to *manually* change to the 22.05 channel
     - [ ] try out the vagrant-nixos-plugin to provision
