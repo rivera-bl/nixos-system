@@ -63,6 +63,15 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  users.users.nixos = {
+    isNormalUser = true;
+    useDefaultShell = true;
+    createHome = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  };
+
+  security.sudo.wheelNeedsPassword = false;
+
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
