@@ -39,6 +39,30 @@
     };
   }; 
 
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    # font = "Lat2-Terminus16";
+    # keyMap = "la-latin1";
+    useXkbConfig = true; # so the caps:swap works on tty
+  };
+
+  services = {
+    xserver = {
+      enable = true;
+      layout = "latam";
+      libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
+      xkbOptions = "caps:swapescape";
+      displayManager.startx.enable = true; # don't start the graphical interface
+    };
+
+    openssh = {
+      enable = true;
+    };
+  };
+
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
