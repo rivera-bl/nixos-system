@@ -72,6 +72,14 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    git
+  ];
+
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
