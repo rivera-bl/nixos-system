@@ -67,6 +67,20 @@ reboot
 ## NetworkManager
 
 
+## Secrets Management
+
+- Use [sops-nix][4]
+- Here's an [youtube video][5] explaining `sops`
+- This is an [example][6] of `sops-nix` used in nixos configuration
+
+### Goal
+
+- For now just to manage the ssh keys for `git` and the wireless `psk` as secrets
+- For backup should have an `age` and `pgp` keys to encrypt/decrypt the secrets
+- Would be great to store the `pgp` inside a yubikey, and this be our backup key
+
+## NixOS VM with Vagrant
+
 * For ease of experimentation use a NixOS VM with Vagrant. Build the box:
 
 ```
@@ -91,7 +105,7 @@ nix-channel --list | grep nixos
 nix-channel --add https://nixos.org/channels/nixos-22.05 nixos
 nix-channel --update nixos; nixos-rebuild switch 
 ```
-## Known Issues
+### Known Issues
 
 * When mounting a directory from the host to the vagrant vm with `config.vm.synced_folder`, it gets wiped out if we do a `nixos-rebuild switch`. We can restart the vm for the directory to be mounted again.
 
@@ -106,15 +120,18 @@ nix-channel --update nixos; nixos-rebuild switch
 [1]: https://www.youtube.com/watch?v=mJbQ--iBc1U&list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-&index=8
 [2]: https://github.com/jakubgs/nixos-config
 [3]: https://nixos.org/manual/nixos/stable/index.html#sec-writing-modules
+[4]: https://github.com/Mic92/sops-nix
+[5]: https://www.youtube.com/watch?v=V2PRhxphH2w
+[6]: https://github.com/Mic92/dotfiles/tree/master/nixos
 
 ## TODO
 
+- [x] install nixos on X1
 - [ ] create a flake for configuration.nix
-  - [ ] use roles
-- [ ] zfs?
-- [ ] home-manager?
-    - !doesn't support nixos rollbacks
-    https://nix-community.github.io/home-manager/index.html#sec-usage-rollbacks
+  - [ ] use modules/roles
+- [ ] configure network manager for wireless connection
+- [ ] configure git
+- [ ] manage secrets
 - [x] upload nixbox-21.05 to vagrant cloud
 - [x] share dev/nix folder with vagrant
 - [x] install rnix-lsp on vim with treesitter support
