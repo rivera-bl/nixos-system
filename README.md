@@ -1,10 +1,71 @@
-## My NixOS Journey
+## Why?
 
 * After trying to port my development environment using Docker (tmux, neovim, zsh and fzf) to Windows with no avail, because of various imcompatibilities like not being able to use ctrl-space, I've decided to deep dive once for all to NixOS, so I can have a reproducible system that I can virtualize and isolate from the Windows environment. WSL2 gave me headaches with my company VPN too. Besides, seems *fun* and I've wanted to switch from Arch from a long time now.
 
-* Here I'll build a `configuration.nix` using flakes.
+## Constraints
 
-## NixOS box with Vagrant
+- Won't use Home Manager because I don't see the point. I can just move my dotfiles to .config and manage the installations through configuration.nix
+
+## NixOS install on X1
+
+### Burn USB
+
+```
+wget https://channels.nixos.org/nixos-22.05/latest-nixos-minimal-x86_64-linux.iso
+sudo dd bs=1M if=/path/to/iso/latest-nixos-minimal-x86_64-linux.iso of=/dev/sdb status=progress conv=fsync
+```
+
+### Run Installer
+
+1. Press `enter` on Lenovo menu
+2. `F1` to disable `secure boot`
+3. `F12` to select the boot device
+4. Run the installer
+5. Set a password for the `nixos` user with `passwd nixos` to SSH from other machine
+6. Make sure to have an internet connection
+
+### SSH into X1
+
+```
+ssh-keygen -t dsa -f key
+ssh-copy-id -i key nixos@<ip>
+ssh nixos@<ip>
+```
+
+### UEFI Partitions
+
+```
+sudo -i
+parted /dev/nvme0n1 -- mklabel gpt
+parted /dev/nvme0n1 -- mkpart primary 512MiB -8GiB
+parted /dev/nvme0n1 -- mkpart primary linux-swap -8GiB 100%
+parted /dev/nvme0n1 -- mkpart ESP fat32 1MiB 512MiB
+parted /dev/nvme0n1 -- set 3 esp on
+```
+
+### Formatting
+
+```
+mkfs.ext4 -L nixos /dev/nvme0n1p1
+mkswap -L swap /dev/nvme0n1p2
+mkfs.fat -F 32 -n boot /dev/nvme0n1p3
+```
+
+### Install
+
+TODO: pass this `configuration.nix` on the installation
+
+```
+mkdir -p /mnt/boot
+mount /dev/nvme0n1p1 /mnt
+mount /dev/nvme0n1p3 /mnt/boot
+nixos-generate-config --root /mnt
+nixos-install
+reboot
+```
+
+## NetworkManager
+
 
 * For ease of experimentation use a NixOS VM with Vagrant. Build the box:
 
