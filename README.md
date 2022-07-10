@@ -67,6 +67,30 @@ reboot
 ## NetworkManager
 
 
+## Git
+
+- Git can't be configured through `configuration.nix`, only with `home manager`
+- Will have to track `~/.gitconfig` in `dotfiles` repository
+
+
+```
+git config --global user.name "rivera-bl"
+git config --global user.email "rivera.pablo1090@gmail.com"
+git config --global init.defaultBranch "main"
+ssh-keygen -t ed25519
+echo "IdentityFile ~/.ssh/github" >> ~/.ssh/config
+```
+
+- Clone and symlink `configuration.nix`
+
+```
+mkdir -p ~/code/nix
+cd !$
+git clone git@github.com:rivera-bl/nixos-system.git
+rm /etc/nixos/configuration.nix
+ln -s ~/code/nix/nixos-system/configuration.nix /etc/nixos/configuration.nix
+```
+
 ## Secrets Management
 
 - Use [sops-nix][4]
@@ -136,8 +160,3 @@ nix-channel --update nixos; nixos-rebuild switch
 - [x] share dev/nix folder with vagrant
 - [x] install rnix-lsp on vim with treesitter support
     treesitter is not automatically highlighting when opening .nix files
-
-- [ ] create a box with nixos 22.05
-    - [ ] for now use a provisioner to *manually* change to the 22.05 channel
-    - [ ] try out the vagrant-nixos-plugin to provision
-      - https://github.com/nix-community/vagrant-nixos-plugin
