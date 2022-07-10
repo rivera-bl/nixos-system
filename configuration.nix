@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   nix = {
     package = pkgs.nixFlakes;
@@ -15,7 +16,7 @@
 
   boot.loader.grub = {
     enable = true;
-    devices = [ "nodev" ];
+    devices = ["nodev"];
     efiInstallAsRemovable = true;
     efiSupport = true;
   };
@@ -30,14 +31,14 @@
 
     wireless = {
       enable = true;
-      interfaces = [ "wlp0s20f3" ];
+      interfaces = ["wlp0s20f3"];
       networks = {
         "JMRivera." = {
           pskRaw = "20e0852468f9cf0a1e848676bce12598fdff9668e778b6575bf64154e4e2fdef";
         };
       };
     };
-  }; 
+  };
 
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
@@ -67,7 +68,7 @@
     isNormalUser = true;
     useDefaultShell = true;
     createHome = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
   };
 
   security.sudo.wheelNeedsPassword = false;

@@ -69,7 +69,7 @@ reboot
 
 ## Git
 
-- Git can't be configured through `configuration.nix`, only with `home manager`
+- Git can't be configured through `configuration.nix`, only with `home-manager`
 - Will have to track `~/.gitconfig` in `dotfiles` repository
 
 
@@ -94,7 +94,7 @@ ln -s ~/code/nix/nixos-system/configuration.nix /etc/nixos/configuration.nix
 ## Secrets Management
 
 - Use [sops-nix][4]
-- Here's an [youtube video][5] explaining `sops`
+- Here's a [youtube video][5] explaining `sops`
 - This is an [example][6] of `sops-nix` used in nixos configuration
 
 ### Goal
