@@ -68,20 +68,43 @@
     isNormalUser = true;
     useDefaultShell = true;
     createHome = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "docker"];
   };
+
+  virtualisation.docker.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim
     wget
     git
-    tmux
-    zsh
+    tmux zsh fzf
+    cmake gcc
   ];
+
+  # programs.neovim.enable = true;
+  # programs.neovim.viAlias = true;
+  # programs.neovim.defaultEditor = true;
+
+  # environment.variables = {
+  #   EDITOR = "nvim";
+  #   VISUAL = "nvim";
+  # };
+
+  # # this works
+  # programs.neovim.configure = {
+  #   customRC = "
+  #   luafile ~/init.lua
+  #   ";
+  # };
+
+  environment.etc = {
+    "xdg/user-dirs.defaults".text = ''
+      XDG_CONFIG_HOME=~/.config
+    '';
+  };
 
   system.stateVersion = "22.05";
 }
