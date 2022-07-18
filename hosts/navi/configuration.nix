@@ -1,6 +1,8 @@
 {
   config,
   pkgs,
+  inputs,
+  nvim,
   ...
 }: {
   imports = [
@@ -82,6 +84,7 @@
     git
     tmux zsh fzf
     cmake gcc
+    nvim.packages.x86_64-linux.default
   ];
 
   # programs.neovim.enable = true;

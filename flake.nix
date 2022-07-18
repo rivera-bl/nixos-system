@@ -1,26 +1,16 @@
 {
-  description = "NixOS System";
-
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-22.05";
+    nvim.url = "github:rivera-bl/dotfiles?dir=nvim";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  }: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {inherit system;};
-    lib = nixpkgs.lib;
-  in {
-    nixosConfigurations = {
-      navi = lib.nixosSystem {
-        inherit system;
-        modules = [
-          ./hosts/navi/configuration.nix
-        ];
-      };
+  outputs = { self, ... }@inputs: {
+    nixosConfigurations.navi = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+         { _module.args = inputs; }
+        ./hosts/navi/configuration.nix
+      ]; 
     };
   };
 }
