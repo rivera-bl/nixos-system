@@ -86,6 +86,10 @@
     cmake gcc
     nvim.packages.x86_64-linux.default
     tree lazygit
+    cargo rustc rnix-lsp
+    terraform terraform-ls
+    sumneko-lua-language-server
+    yaml-language-server
   ];
 
   # programs.neovim.enable = true;
