@@ -92,21 +92,10 @@
     yaml-language-server
   ];
 
-  # programs.neovim.enable = true;
-  # programs.neovim.viAlias = true;
-  # programs.neovim.defaultEditor = true;
-
-  # environment.variables = {
-  #   EDITOR = "nvim";
-  #   VISUAL = "nvim";
-  # };
-
-  # # this works
-  # programs.neovim.configure = {
-  #   customRC = "
-  #   luafile ~/init.lua
-  #   ";
-  # };
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
 
   environment.etc = {
     "xdg/user-dirs.defaults".text = ''
