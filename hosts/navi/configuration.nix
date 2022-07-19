@@ -85,6 +85,7 @@
     tmux zsh fzf
     cmake gcc
     nvim.packages.x86_64-linux.default
+    tree lazygit
   ];
 
   # programs.neovim.enable = true;
