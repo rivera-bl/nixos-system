@@ -94,9 +94,15 @@ Goal:
   - For backup should have an `age` and `pgp` keys to encrypt/decrypt the secrets
   - Would be great to store the `pgp` inside a yubikey, and this be our backup key
 
+## NixOS on WSL
+
+- Apparently [here][7] is all I need
+
 ## TODO
 
 - [ ] !build for wsl
+- [x] !install hardware configuration for lenovo X1 8thgen
+  - there only for 7th and 9th, sigh
 - [ ] manage secrets
 - [ ] install transmission
 
@@ -105,6 +111,7 @@ Goal:
 - [Video: Wil Taylor][1]
 - [Repository: multiple hosts/modules][2]
 - [Docs: writing modules][3]
+- [Available `xkbOptions`][9]
 
 [1]: https://www.youtube.com/watch?v=mJbQ--iBc1U&list=PL-saUBvIJzOkjAw_vOac75v-x6EzNzZq-&index=8
 [2]: https://github.com/jakubgs/nixos-config
@@ -112,3 +119,6 @@ Goal:
 [4]: https://github.com/Mic92/sops-nix
 [5]: https://www.youtube.com/watch?v=V2PRhxphH2w
 [6]: https://nixos.wiki/wiki/Module
+[7]: https://xeiaso.net/blog/nix-flakes-4-wsl-2022-05-01
+[8]: https://github.com/nix-community/NixOS-WSL/releases
+[9]: https://gist.github.com/jatcwang/ae3b7019f219b8cdc6798329108c9aee
