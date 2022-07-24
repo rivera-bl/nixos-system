@@ -44,29 +44,31 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    # font = "Lat2-Terminus16";
-    # keyMap = "la-latin1";
     useXkbConfig = true; # so the caps:swap works on tty
   };
 
-  services = {
-    xserver = {
+  services.xserver = {
     autoRepeatDelay = 200;
-      enable = true;
-      autorun = false;
-      displayManager.startx.enable = true; # don't start the graphical interface
+    autorun = true;
+    enable = true;
+    libinput.enable = true;
+    layout = "us"; # keyboard has less keys so can't use latam
+    xkbOptions = "caps:swapescape,altwin:prtsc_rwin";
 
-      layout = "latam";
-      libinput.enable = true;
-      xkbOptions = "caps:swapescape";
-      desktopManager = {
-        xterm.enable = false;
-      };
+    displayManager = {
+      lightdm.enable = true; # doesn't startx without this
+      startx.enable = true;
+      defaultSession = "none+i3";
     };
 
-    openssh = {
+    windowManager.i3 = {
       enable = true;
+      package = pkgs.i3-gaps;
     };
+  };
+
+  services.openssh = {
+    enable = true;
   };
 
   sound.enable = true;
@@ -84,8 +86,6 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
     git
