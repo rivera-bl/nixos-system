@@ -52,10 +52,15 @@
   services = {
     xserver = {
       enable = true;
-      layout = "latam";
-      libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
-      xkbOptions = "caps:swapescape";
+      autorun = false;
       displayManager.startx.enable = true; # don't start the graphical interface
+
+      layout = "latam";
+      libinput.enable = true;
+      xkbOptions = "caps:swapescape";
+      desktopManager = {
+        xterm.enable = false;
+      };
     };
 
     openssh = {
