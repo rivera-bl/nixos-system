@@ -2,10 +2,6 @@
 
 - After trying to port my development environment using Docker (tmux, neovim, zsh and fzf) to Windows with no avail, because of various imcompatibilities like not being able to use ctrl-space, I've decided to deep dive once for all to NixOS, so I can have a reproducible system that I can virtualize and isolate from the Windows environment. WSL2 gave me headaches with my company VPN too. Besides, seems *fun* and I've wanted to switch from Arch from a long time now.
 
-## Constraints
-
-- Won't use Home Manager because I don't see the point. I can just move my dotfiles to .config and manage the installations through configuration.nix
-
 ## NixOS install on X1
 
 ### Burn USB
@@ -66,14 +62,17 @@ reboot
 
 ## configuration.nix
 
-`sudo nixos-rebuild switch --flake .#`
+```
+man home-configuration.nix
+sudo nixos-rebuild switch --flake .#
+```
 
 ### NetworkManager
 
 
 ### Git
 
-- Git can't be configured through `configuration.nix`, only with `home-manager`
+- Git, apparently can't be configured through `configuration.nix`, only with `home-manager`
 - Will have to track `~/.gitconfig` in `dotfiles` repository
 
 ```
@@ -95,6 +94,12 @@ Goal:
   - For backup should have an `age` and `pgp` keys to encrypt/decrypt the secrets
   - Would be great to store the `pgp` inside a yubikey, and this be our backup key
 
+## TODO
+
+- [ ] !build for wsl
+- [ ] manage secrets
+- [ ] install transmission
+
 ## Resources
 
 - [Video: Wil Taylor][1]
@@ -106,17 +111,4 @@ Goal:
 [3]: https://nixos.org/manual/nixos/stable/index.html#sec-writing-modules
 [4]: https://github.com/Mic92/sops-nix
 [5]: https://www.youtube.com/watch?v=V2PRhxphH2w
-[6]: https://github.com/Mic92/dotfiles/tree/master/nixos
-
-## TODO
-
-- [x] install nixos on X1
-- [ ] create a flake for configuration.nix
-  - [ ] use modules/roles
-- [ ] configure network manager for wireless connection
-- [ ] configure git
-- [ ] manage secrets
-- [x] upload nixbox-21.05 to vagrant cloud
-- [x] share dev/nix folder with vagrant
-- [x] install rnix-lsp on vim with treesitter support
-    treesitter is not automatically highlighting when opening .nix files
+[6]: https://nixos.wiki/wiki/Module
