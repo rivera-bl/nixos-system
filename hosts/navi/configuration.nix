@@ -51,6 +51,7 @@
 
   services = {
     xserver = {
+    autoRepeatDelay = 200;
       enable = true;
       autorun = false;
       displayManager.startx.enable = true; # don't start the graphical interface
