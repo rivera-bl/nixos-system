@@ -75,6 +75,7 @@
     isNormalUser = true;
     useDefaultShell = true;
     createHome = true;
+    shell = pkgs.fish;
     extraGroups = ["wheel" "docker"];
   };
 
@@ -87,7 +88,8 @@
   environment.systemPackages = with pkgs; [
     wget
     git
-    tmux zsh fzf
+    fish
+    xclip xsel
     cmake gcc
     nvim.packages.x86_64-linux.default
     tree lazygit
@@ -97,6 +99,7 @@
     yaml-language-server
   ];
 
+  # does this even work?
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
