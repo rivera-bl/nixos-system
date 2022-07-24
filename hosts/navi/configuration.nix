@@ -69,6 +69,8 @@
 
   services.openssh = {
     enable = true;
+    passwordAuthentication = true;
+    permitRootLogin = "no";
   };
 
   sound.enable = true;
@@ -79,7 +81,14 @@
     useDefaultShell = true;
     createHome = true;
     shell = pkgs.fish;
-    extraGroups = ["wheel" "docker"];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
+
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAlCFaSGwP7WEVAAtNjLNb60DjcNN5RCxddh7k+6rCw5"
+    ];
   };
 
   virtualisation.docker.enable = true;
@@ -90,6 +99,7 @@
     wget
     git
     fish
+    ripgrep
     xclip xsel
     cmake gcc
     nvim.packages.x86_64-linux.default
