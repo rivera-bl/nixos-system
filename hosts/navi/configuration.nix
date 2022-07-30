@@ -48,7 +48,7 @@
   };
 
   services.xserver = {
-    autoRepeatDelay = 200;
+    autoRepeatDelay = 250;
     autorun = true;
     enable = true;
     libinput.enable = true;
@@ -76,11 +76,15 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  /* users.defaultUserShell = pkgs.zsh; */
+
   users.users.nixos = {
     isNormalUser = true;
     useDefaultShell = true;
     createHome = true;
-    shell = pkgs.fish;
+    # gotta add 'zsh' to .bashrc and .bash_profile
+    # to not install environment.systemPackages.zsh
+    shell = pkgs.zsh;
     extraGroups = [
       "wheel"
       "docker"
@@ -91,24 +95,32 @@
     ];
   };
 
+  /* programs.fish.enable = true; */
+
   virtualisation.docker.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
 
   environment.systemPackages = with pkgs; [
-    wget
-    git
-    fish
+    wget 
     ripgrep
+    tree # replace with broot
+    git
+    zsh
+    go 
+    /* fish fishPlugins.done */
     xclip xsel
     cmake gcc
+    kubectl minikube
     nvim.packages.x86_64-linux.default
-    tree lazygit
+    # language servers
     cargo rustc rnix-lsp
     terraform terraform-ls
     sumneko-lua-language-server
     yaml-language-server
   ];
+
+  environment.pathsToLink = [ "/share/zsh" ];
 
   # does this even work?
   environment.variables = {
