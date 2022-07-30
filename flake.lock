@@ -69,18 +69,15 @@
       },
       "locked": {
         "dir": "nvim",
-        "lastModified": 1658277019,
-        "narHash": "sha256-xactsaiXvoemp1nSG93b8cW0ttnuz1ut6elwXWrcZ9s=",
-        "owner": "rivera-bl",
-        "repo": "dotfiles",
-        "rev": "5347c5d9a8103f413f4fd67c3fb28334aa97f54f",
-        "type": "github"
+        "lastModified": 1659201177,
+        "narHash": "sha256-82zVsmjUD3AguC7lkNIlVGA4bJ7y3IQNGvjRkbWPNBQ=",
+        "type": "git",
+        "url": "file:///home/nixos/nixos/home?dir=nvim"
       },
       "original": {
         "dir": "nvim",
-        "owner": "rivera-bl",
-        "repo": "dotfiles",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/nixos/nixos/home?dir=nvim"
       }
     },
     "root": {
