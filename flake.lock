@@ -17,11 +17,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1658401027,
-        "narHash": "sha256-z/sDfzsFOoWNO9nZGfxDCNjHqXvSVZLDBDSgzr9qDXE=",
+        "lastModified": 1659256765,
+        "narHash": "sha256-RE4l6J+ApJ1vd4QFDhbEasv0M/deTxSK5IsIBYXuHmE=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "83009edccc2e24afe3d0165ed98b60ff7471a5f8",
+        "rev": "727a099e871ff10ae09a1ebd056a5ba4b9dbe50f",
         "type": "github"
       },
       "original": {
@@ -33,11 +33,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1658133429,
-        "narHash": "sha256-OfRWe/pSNUPh2Se4lMW7En78FQqs27Xns2ZsN95TSXk=",
+        "lastModified": 1659052185,
+        "narHash": "sha256-TUbwbzCbprtWB9EtXPM52cWuKETuCV3H+cMXjLRbwTw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3eb3df0dfbf2cb0328da9e0272c0e3f1d8661d96",
+        "rev": "9370544d849be8a07193e7611d02e6f6f1b10768",
         "type": "github"
       },
       "original": {
@@ -69,8 +69,8 @@
       },
       "locked": {
         "dir": "nvim",
-        "lastModified": 1659201177,
-        "narHash": "sha256-82zVsmjUD3AguC7lkNIlVGA4bJ7y3IQNGvjRkbWPNBQ=",
+        "lastModified": 1659229386,
+        "narHash": "sha256-g710mQUiQz2YnxhKeyK8p4zJDT5XV0jDqYuW8Rzcuk8=",
         "type": "git",
         "url": "file:///home/nixos/nixos/home?dir=nvim"
       },

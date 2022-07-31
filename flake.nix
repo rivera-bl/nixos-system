@@ -11,7 +11,7 @@
       navi = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-           { _module.args = inputs; }
+          { _module.args = inputs; }
           ./hosts/navi/configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen #although it is 8th-gen
         ];

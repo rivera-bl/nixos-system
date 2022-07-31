@@ -76,7 +76,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  /* users.defaultUserShell = pkgs.zsh; */
+  users.defaultUserShell = pkgs.zsh;
 
   users.users.nixos = {
     isNormalUser = true;
@@ -84,7 +84,7 @@
     createHome = true;
     # gotta add 'zsh' to .bashrc and .bash_profile
     # to not install environment.systemPackages.zsh
-    shell = pkgs.zsh;
+    /* shell = pkgs.zsh; */
     extraGroups = [
       "wheel"
       "docker"
@@ -101,17 +101,31 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  nixpkgs.overlays = [ (self: super:{
+    kubectl = super.kubectl.overrideAttrs (oldAttrs: rec {
+      version = "1.21.3";
+      src = self.fetchFromGitHub {
+        owner = "kubernetes";
+        repo = "kubernetes";
+        rev = "v${version}";
+        sha256 = "sha256-GMigdVuqJN6eIN0nhY5PVUEnCqjAYUzitetk2QmX5wQ=";
+        };
+      });
+    })
+  ];
+
   environment.systemPackages = with pkgs; [
     wget 
     ripgrep
     tree # replace with broot
     git
     zsh
+    kubectl
     go 
     /* fish fishPlugins.done */
     xclip xsel
     cmake gcc
-    kubectl minikube
+    minikube
     nvim.packages.x86_64-linux.default
     # language servers
     cargo rustc rnix-lsp
